@@ -10,5 +10,59 @@
 </head>
 <body>
   <app-root></app-root>
-</body>
+  <a href="https://www.strava.com/oauth/authorize?client_id=34855&response_type=code&redirect_uri=http://kaese.adrianbrand.ch&approval_prompt=force">Strava Login</a>
+    
+  <br>
+  <button type="button" onclick="document.getElementById('code').innerHTML = document.location.href.split('&')[1]">
+  Get Code</button>
+  <br>
+  Code:
+  <p id="code"></p>
+
+  <button type="button" onclick="document.getElementById('token').innerHTML = getToken(document.getElementById('code').innerHTML.split('=')[1])">Get Token</button>
+  <br>
+  Token:
+  <p id="token"></p>
+
+  <button type="button" onclick="getData(document.getElementById('token').innerHTML)">Request data</button>
+  <button type="button" onclick="document.getElementById('response').innerHTML = ''">Clear data</button>
+  <br>
+  Response:
+  <br>
+  <p id="response"></p>
+
+  
+  <script>
+  function getData(tokenRaw) {
+    var tokenEntry = tokenRaw.split(',')[1];
+    var tokenNumber = tokenEntry.split(':')[1];
+    var token = tokenNumber.slice(1, -1);
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("response").innerHTML = this.responseText;
+      }
+    };
+
+    var bearer = "Bearer " + token;
+    xhttp.open("GET", "https://www.strava.com/api/v3/activities", true);
+    xhttp.setRequestHeader("Authorization", bearer);
+    xhttp.send();
+  }
+
+  function getToken(code) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("token").innerHTML = this.responseText;
+      }
+    };
+    var request = "https://www.strava.com/oauth/token?client_id=34855&client_secret=845df2c2d56d781e455a65f2102636f30e4322f5&code=" + code + "&grant_type=authorization_code";
+    xhttp.open("POST", request, true);
+    xhttp.send();
+  }
+  </script>
+
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="es2015-polyfills.js" nomodule></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>
