@@ -13,18 +13,8 @@
   <a href="https://www.strava.com/oauth/authorize?client_id=34855&response_type=code&redirect_uri=http://kaese.adrianbrand.ch&approval_prompt=force">Strava Login</a>
     
   <br>
-  <button type="button" onclick="document.getElementById('code').innerHTML = document.location.href.split('&')[1]">
-  Get Code</button>
-  <br>
-  Code:
-  <p id="code"></p>
-
-  <button type="button" onclick="document.getElementById('token').innerHTML = getToken(document.getElementById('code').innerHTML.split('=')[1])">Get Token</button>
-  <br>
-  Token:
-  <p id="token"></p>
-
-  <button type="button" onclick="getData(document.getElementById('token').innerHTML)">Request data</button>
+  <button type="button" onclick="authorizeCookie(document.location.href)">Autorize</button>
+  <button type="button" onclick="getData()">Request data</button>
   <button type="button" onclick="document.getElementById('response').innerHTML = ''">Clear data</button>
   <br>
   Response:
@@ -33,11 +23,28 @@
 
   
   <script>
-  function getData(tokenRaw) {
-    var tokenEntry = tokenRaw.split(',')[1];
-    var tokenNumber = tokenEntry.split(':')[1];
-    var token = tokenNumber.slice(1, -1);
+  function authorizeCookie(codeRaw) {
+    /*URL nach Authorisierung: http://kaese.adrianbrand.ch/?state=&code=e34edab04274a5ab0714c6ed07e75b178e3ffa47&scope= */
+    var codePart = codeRaw.split('&')[1];
+    var code = codePart.split('=')[1];
+    document.cookie = "code=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var tokenEntry = this.responseText.split(',')[1];
+        var tokenNumber = tokenEntry.split(':')[1];
+        var token = tokenNumber.slice(1, -1);
+        document.cookie = "code=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = token;
+      }
+    };
+    var request = "https://www.strava.com/oauth/token?client_id=34855&client_secret=845df2c2d56d781e455a65f2102636f30e4322f5&code=" + code + "&grant_type=authorization_code";
+    xhttp.open("POST", request, true);
+    xhttp.send();
+  }
+
+  function getData(tokenRaw) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -45,21 +52,9 @@
       }
     };
 
-    var bearer = "Bearer " + token;
+    var bearer = "Bearer " + document.cookie;
     xhttp.open("GET", "https://www.strava.com/api/v3/activities", true);
     xhttp.setRequestHeader("Authorization", bearer);
-    xhttp.send();
-  }
-
-  function getToken(code) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("token").innerHTML = this.responseText;
-      }
-    };
-    var request = "https://www.strava.com/oauth/token?client_id=34855&client_secret=845df2c2d56d781e455a65f2102636f30e4322f5&code=" + code + "&grant_type=authorization_code";
-    xhttp.open("POST", request, true);
     xhttp.send();
   }
   </script>
