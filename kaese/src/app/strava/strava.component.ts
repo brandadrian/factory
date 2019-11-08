@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StravaComponent implements OnInit {
 
-  constructor() { }
+  counter: number;
+
+  constructor() { 
+    this.counter = 0;
+  }
 
   ngOnInit() {
   }
 
+  countButton() {
+    this.counter += 1;
+  }
 }
