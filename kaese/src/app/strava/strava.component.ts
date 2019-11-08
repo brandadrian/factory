@@ -19,12 +19,7 @@ export class StravaComponent implements OnInit {
   }
 
   clickButton() {
-    // this.commonService.getMessage()
-    // .subscribe((data: Object) => {
-    //     id: data['id']
-    // });
-
-    return "asd";
-    //this.message = this.commonService.getMessage();//this.counter += 1;
+    return this.commonService.getMessage()
+    .subscribe((data: Object) => this.message = "ID: " + data[1]["id"] + " Name:" + data[1]["employee_name"]);
   }
 }
