@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-strava',
@@ -7,16 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StravaComponent implements OnInit {
 
-  counter: number;
+  message: string;
+  private counter: number;
 
-  constructor() { 
+  constructor(private commonService: CommonService) { 
     this.counter = 0;
   }
 
   ngOnInit() {
   }
 
-  countButton() {
-    this.counter += 1;
+  clickButton() {
+    // this.commonService.getMessage()
+    // .subscribe((data: Object) => {
+    //     id: data['id']
+    // });
+
+    return "asd";
+    //this.message = this.commonService.getMessage();//this.counter += 1;
   }
 }
