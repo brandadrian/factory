@@ -14,13 +14,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SudokuSolverComponent } from './sudoku-solver/sudoku-solver.component';
+import { ZhawComponent } from './zhaw/zhaw.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     StravaComponent,
-    SudokuSolverComponent
+    SudokuSolverComponent,
+    ZhawComponent
   ],
   imports: [
     BrowserModule,
