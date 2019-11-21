@@ -8,7 +8,9 @@ import { CommonService } from '../common.service';
 })
 export class SudokuSolverComponent implements OnInit {
 
-  message: string;
+  dataObject: Object;
+  result: string;
+  origin: string;
   private counter: number;
 
   constructor(private commonService: CommonService) { }
@@ -18,6 +20,11 @@ export class SudokuSolverComponent implements OnInit {
 
   clickButton() {
     return this.commonService.getMessage()
-    .subscribe((data: Object) => this.message = "SudokuToSolveString: " + data["sudokuToSolveString"] + "SudokuSolvedString:" + data["sudokuSolvedString"]);
+    .subscribe((data: Object) => this.displayResult(data));
+  }
+
+  displayResult(data: Object){
+    this.result = "SudokuSolvedString:" + data["sudokuSolvedString"];
+    this.origin = "SudokuToSolveString:" + data["sudokuToSolveString"];
   }
 }
