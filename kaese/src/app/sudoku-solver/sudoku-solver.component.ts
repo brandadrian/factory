@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-sudoku-solver',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SudokuSolverComponent implements OnInit {
 
-  constructor() { }
+  message: string;
+  private counter: number;
+
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
   }
 
+  clickButton() {
+    return this.commonService.getMessage()
+    .subscribe((data: Object) => this.message = "SudokuToSolveString: " + data["sudokuToSolveString"] + "SudokuSolvedString:" + data["sudokuSolvedString"]);
+  }
 }

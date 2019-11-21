@@ -9,7 +9,7 @@ export class CommonService {
   constructor(private http: HttpClient) { }
 
   getMessage() {
-    return this.http.get('http://dummy.restapiexample.com/api/v1/employees')
+    return this.http.get('http://brandadrian.internet-box.ch:9001/sudoku')
     //return "hello from common...";
   }
 }

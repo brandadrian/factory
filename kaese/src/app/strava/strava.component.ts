@@ -20,6 +20,6 @@ export class StravaComponent implements OnInit {
 
   clickButton() {
     return this.commonService.getMessage()
-    .subscribe((data: Object) => this.message = "ID: " + data[1]["id"] + " Name:" + data[1]["employee_name"]);
+    .subscribe((data: Object) => this.message = "SudokuToSolveString: " + data["sudokuToSolveString"] + "SudokuSolvedString:" + data["sudokuSolvedString"]);
   }
 }
