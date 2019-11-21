@@ -3,8 +3,15 @@
 <button mat-raised-button (click)="clickButton()">Solve Sudoku</button>
 <br>
 <br>
+<h3>Origin</h3>
+<ul style="list-style-type:none">
+    <li *ngFor="let a of originMatrix; let index = index">
+      {{ a }}
+    </li>
+</ul>
 <h3>Result</h3>
-{{result}}
-<br>
-<br>
-{{origin}}
+<ul style="list-style-type:none">
+    <li *ngFor="let a of resultMatrix; let index = index">
+      {{ a }}
+    </li>
+</ul>  

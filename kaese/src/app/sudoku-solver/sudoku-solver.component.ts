@@ -11,6 +11,9 @@ export class SudokuSolverComponent implements OnInit {
   dataObject: Object;
   result: string;
   origin: string;
+  resultMatrix: Object;
+  originMatrix: Object;
+
   private counter: number;
 
   constructor(private commonService: CommonService) { }
@@ -26,5 +29,7 @@ export class SudokuSolverComponent implements OnInit {
   displayResult(data: Object){
     this.result = "SudokuSolvedString:" + data["sudokuSolvedString"];
     this.origin = "SudokuToSolveString:" + data["sudokuToSolveString"];
+    this.resultMatrix = data["sudokuSolved"];
+    this.originMatrix = data["sudokuToSolve"];
   }
 }
