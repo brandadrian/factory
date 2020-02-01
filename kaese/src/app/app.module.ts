@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SudokuSolverComponent } from './sudoku-solver/sudoku-solver.component';
 import { ZhawComponent } from './zhaw/zhaw.component';
+import { NextConnectionsComponent } from './next-connections/next-connections.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ZhawComponent } from './zhaw/zhaw.component';
     NavbarComponent,
     StravaComponent,
     SudokuSolverComponent,
-    ZhawComponent
+    ZhawComponent,
+    NextConnectionsComponent
   ],
   imports: [
     BrowserModule,
