@@ -1,6 +1,7 @@
 <br>
 <br>
 <button mat-raised-button (click)="clickButton()">Solve Sudoku</button>
+<button mat-raised-button (click)="getPythonServerStatusClick()">Status of PythonServer</button>
 <br>
 <br>
 <h3>Origin</h3>
@@ -14,4 +15,6 @@
     <li *ngFor="let a of resultMatrix; let index = index">
       {{ a }}
     </li>
-</ul>  
+</ul>
+{{result}}
+
