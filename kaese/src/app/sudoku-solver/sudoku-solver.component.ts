@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CommonService } from '../common.service';
 
 @Component({
@@ -24,6 +25,11 @@ export class SudokuSolverComponent implements OnInit {
   clickButton() {
     return this.commonService.getMessage()
     .subscribe((data: Object) => this.displayResult(data));
+  }
+
+  getPythonServerStatusClick() {
+    return this.commonService.getPythonServerStatus()
+    .subscribe((data: Object) => this.result = data['message']);
   }
 
   displayResult(data: Object){
