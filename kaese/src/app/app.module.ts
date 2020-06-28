@@ -17,6 +17,8 @@ import { SudokuSolverComponent } from './sudoku-solver/sudoku-solver.component';
 import { ZhawComponent } from './zhaw/zhaw.component';
 import { NextConnectionsComponent } from './next-connections/next-connections.component';
 import { FootballStatsComponent } from './football-stats/football-stats.component';
+import { HomeAutomationComponent } from './home-automation/home-automation.component';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { FootballStatsComponent } from './football-stats/football-stats.componen
     SudokuSolverComponent,
     ZhawComponent,
     NextConnectionsComponent,
-    FootballStatsComponent
+    FootballStatsComponent,
+    HomeAutomationComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
