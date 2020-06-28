@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { SudokuSolverComponent } from './sudoku-solver/sudoku-solver.component';
 import { ZhawComponent } from './zhaw/zhaw.component';
 import { NextConnectionsComponent } from './next-connections/next-connections.component';
+import { FootballStatsComponent } from './football-stats/football-stats.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NextConnectionsComponent } from './next-connections/next-connections.co
     StravaComponent,
     SudokuSolverComponent,
     ZhawComponent,
-    NextConnectionsComponent
+    NextConnectionsComponent,
+    FootballStatsComponent
   ],
   imports: [
     BrowserModule,
