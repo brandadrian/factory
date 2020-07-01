@@ -15,6 +15,6 @@ export class CommonService {
 
   getPythonServerStatus()
   {
-    return this.http.get('http://brandadrian.synology.me:9000/status');
+    return this.http.get('http://brandadrian.synology.me:9000/server-status');
   }
 }
