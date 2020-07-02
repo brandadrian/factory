@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-next-connections',
@@ -12,13 +11,14 @@ export class NextConnectionsComponent implements OnInit {
   public secondsTo: number;
   public minutesToStGallen: number;
   public minutesToZurich: number;
+  private timeTableToStGallen = [4, 26, 34, 56];
 
   constructor() { 
     setInterval(() => {
       this.now = new Date();
       this.secondsTo = this.getSeconds();
       this.minutesToStGallen = this.getMinutes(56);
-      this.minutesToZurich = this.getMinutes(31);
+      this.minutesToZurich = this.getMinutes(26);
     }, 1);
   }
 
@@ -26,10 +26,12 @@ export class NextConnectionsComponent implements OnInit {
   }
 
   getMinutes(timeTo) {
-    return timeTo - this.now.getMinutes();
+    const minutesNow = this.now.getMinutes();
+    return ((timeTo - minutesNow) < 0) ? 60 - minutesNow + timeTo: timeTo - minutesNow; 
   }
 
   getSeconds() {
-    return 60 - this.now.getSeconds() == 60 ? 0 : 60 - this.now.getSeconds() ;
+    const secondsNow = this.now.getSeconds();
+    return 60 - secondsNow == 60 ? 0 : 60 - secondsNow ;
   }
 }
