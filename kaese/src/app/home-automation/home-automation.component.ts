@@ -9,13 +9,23 @@ import { CommonService } from '../common.service';
 })
 export class HomeAutomationComponent implements OnInit {
 
-  result: string;
+  serverStatus: string;
+
+  homeAutomationState: string;
+
+  shellyState: string;
 
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
     this.commonService.getPythonServerStatus()
-    .subscribe((data: Object) => this.result = data['status']);
+    .subscribe((data: Object) => this.serverStatus = data['message']);
+
+    this.commonService.getPythonServerHomeAutomationState()
+    .subscribe((data: Object) => this.homeAutomationState = data['message']);
+
+    this.commonService.getPythonServerHomeAutomationShellyState()
+    .subscribe((data: Object) => this.shellyState = data['message']);
   }
 
 }

@@ -15,6 +15,16 @@ export class CommonService {
 
   getPythonServerStatus()
   {
-    return this.http.get('http://brandadrian.synology.me:9000/server-status');
+    return this.http.get('http://brandadrian.synology.me:9100/server-state');
+  }
+
+  getPythonServerHomeAutomationState()
+  {
+    return this.http.get('http://brandadrian.synology.me:9100/home-automation');
+  }
+
+  getPythonServerHomeAutomationShellyState()
+  {
+    return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly');
   }
 }
