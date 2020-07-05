@@ -16,7 +16,8 @@ const routes: Routes = [
   {path: 'next-connections', component: NextConnectionsComponent},
   {path: 'football-stats', component: FootballStatsComponent},
   {path: 'home-automation', component: HomeAutomationComponent},
-  {path: 'info', component: InfoComponent}
+  {path: 'info', component: InfoComponent},
+  {path: '', component: InfoComponent}
 ];
 
 @NgModule({
