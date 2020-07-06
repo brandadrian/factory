@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './next-connections.component.html',
   styleUrls: ['./next-connections.component.css']
 })
+
 export class NextConnectionsComponent implements OnInit {
 
   public now: Date = new Date();
