@@ -16,7 +16,7 @@ export class NextConnectionsComponent implements OnInit {
   private timeTableToStGallen = [4, 26, 34, 56];
   private timeTableToZurich = [4, 26, 34, 56];
 
-  constructor() { 
+  constructor() {
     setInterval(() => {
       this.now = new Date();
       const minutesNow = this.now.getMinutes();
@@ -41,18 +41,15 @@ export class NextConnectionsComponent implements OnInit {
     return 60 - secondsNow === 60 ? 0 : 60 - secondsNow ;
   }
 
-  getNextTime(minutesNow, timeTable)
+  getNextTime(minutesNow: number, timeTable: number[])
   {
-
-    for (let item in timeTable)
-    {
-      var nextItem = Number(item) + 1;
-      if (timeTable[item] < minutesNow && timeTable[nextItem] > minutesNow)
+    for (let i = 0; i < timeTable.length; i++){
+      if (i < (timeTable.length - 1) && timeTable[i] < minutesNow && timeTable[i + 1] > minutesNow)
       {
-        return timeTable[nextItem];
+        return timeTable[i + 1];
       }
-      
-      return timeTable['0'];
     }
+
+    return timeTable[0];
   }
 }

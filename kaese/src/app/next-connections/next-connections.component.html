@@ -1,9 +1,22 @@
 <div align="center">
     <h2>Aktuelle Zeit: {{now | date:'H:mm:ss'}}</h2>
     <br>
-    <h2>Nächste Verbindung Richtung St.Gallen in : {{minutesToStGallen | number: '2.'}}:{{secondsTo | number: '2.'}}</h2>
-    <h2>Nächste Verbindung Richtung Zürich in: {{minutesToZurich | number: '2.'}}:{{secondsTo | number: '2.'}}</h2>
-    <br>
-    <h2>Nächste Verbindung Richtung St.Gallen um: {{now.getHours() | number: '2.'}}:{{nextToStGallen | number: '2.'}}</h2>
-    <h2>Nächste Verbindung Richtung Zürich um: {{now.getHours() | number: '2.'}}:{{nextToZurich | number: '2.'}}</h2>
+    <table mat-table style="text-align: left">
+        <tr>
+          <th>Nach</th>
+          <th>Abfahrtszeit</th>
+          <th>Verbleibende Zeit</th>
+        </tr>
+        <tr>
+          <td>St. Gallen</td>
+          <td>{{now.getHours() | number: '2.'}}:{{nextToStGallen | number: '2.'}}</td>
+          <td>{{minutesToStGallen | number: '2.'}}:{{secondsTo | number: '2.'}}</td>
+        </tr>
+        <tr>
+          <td>Zürich</td>
+          <td>{{now.getHours() | number: '2.'}}:{{nextToZurich | number: '2.'}}</td>
+          <td>{{minutesToZurich | number: '2.'}}:{{secondsTo | number: '2.'}}</td>
+        </tr>
+      </table>
+
 </div>
