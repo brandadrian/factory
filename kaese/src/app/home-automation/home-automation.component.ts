@@ -15,6 +15,8 @@ export class HomeAutomationComponent implements OnInit {
 
   shellyState: string;
 
+  shellyRelay0: string;
+
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
@@ -26,6 +28,9 @@ export class HomeAutomationComponent implements OnInit {
 
     this.commonService.getPythonServerHomeAutomationShellyState()
     .subscribe((data: Object) => this.shellyState = data['message']);
+
+    this.commonService.getPythonServerHomeAutomationShellyRelay0()
+    .subscribe((data: Object) => this.shellyRelay0 = data['message']);
   }
 
 }

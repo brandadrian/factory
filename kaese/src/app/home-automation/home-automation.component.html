@@ -1,5 +1,40 @@
 <h2>Kommunikation mit Home Automation Geräten über einen Python Web Service hosted als Docker Container auf Synology NAS.</h2>
 <br>
-<p>Server (/server-state): {{serverStatus}}</p>
-<p>Shelly (/home-automation/shelly): {{shellyState}}</p>
-<p>Home Automation (/home-automation): {{homeAutomationState}}</p>
+
+<table style="text-align: left">
+    <tr>
+      <th>Ressource</th>
+      <th></th>
+      <th>Beschreibung</th>
+      <th></th>
+      <th>Response</th>
+    </tr>
+    <tr>
+      <td>/server-state)</td>
+      <td>  </td>
+      <td>Aktueller Status vom Server</td>
+      <td>  </td>
+      <td>{{serverStatus}}</td>
+    </tr>
+    <tr>
+        <td>/home-automation</td>
+        <td>  </td>
+        <td>Home Automation Einstieg</td>
+        <td>  </td>
+        <td>{{homeAutomationState}}</td>
+    </tr>
+    <tr>
+        <td>/home-automation/shelly</td>
+        <td>  </td>
+        <td>Shelly Einstieg</td>
+        <td>  </td>
+        <td>{{shellyState}}</td>
+    </tr>
+    <tr>
+        <td>/home-automation/shelly/relay/0</td>
+        <td>  </td>
+        <td>Abfrage von Relay0 nur mit Authentication möglich.</td>
+        <td>  </td>
+        <td>{{shellyRelay0}}</td>
+    </tr>
+  </table>
