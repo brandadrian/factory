@@ -9,12 +9,13 @@
         <div fxShow="true" fxHide.lt-md>
           <!-- The following menu items will be hidden on both SM and XS screen sizes -->
           <a mat-button routerLink="/info"> Info</a>
-          <a mat-button routerLink="/next-connections"> Next Connections</a>
-          <a mat-button routerLink="/football-stats"> Football Stats</a>
+          <a mat-button routerLink="/next-connections"> ÖV-Verbindungen</a>
           <a mat-button routerLink="/home-automation"> Home Automation</a>
+
+          <!--<a mat-button routerLink="/football-stats"> Football Stats</a>
           <a mat-button routerLink="/sudokuSolver"> Sudoku Solver </a>
           <a mat-button routerLink="/strava"> Strava</a>
-          <a mat-button routerLink="/zhaw"> ZHAW</a>   
+          <a mat-button routerLink="/zhaw"> ZHAW</a>  --> 
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -25,11 +26,12 @@
           <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
           <a href="#" mat-list-item routerLink="/info"> Info</a>
           <a href="#" mat-list-item routerLink="/next-connections"> Next Connections</a>
-          <a href="#" mat-list-item routerLink="/football-stats"> Football Stats</a>
           <a href="#" mat-list-item routerLink="/home-automation"> Home Automation</a>
+
+          <!--<a href="#" mat-list-item routerLink="/football-stats"> Football Stats</a>
           <a href="#" mat-list-item routerLink="/sudokuSolver"> Sudoku Solver </a>
           <a href="#" mat-list-item routerLink="/strava"> Strava</a>
-          <a href="#" mat-list-item routerLink="/zhaw"> ZHAW</a>  
+          <a href="#" mat-list-item routerLink="/zhaw"> ZHAW</a>    --> 
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content fxFlexFill><router-outlet></router-outlet></mat-sidenav-content>

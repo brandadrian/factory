@@ -11,11 +11,11 @@ export class NextConnectionsComponent implements OnInit {
   public now: Date = new Date();
   public secondsTo: number;
   public minutesToStGallen: number;
-  public minutesToZurich: number;
-  public nextToZurich: number;
+  public minutesToAlgetshausen: number;
+  public nextToAlgetshausen: number;
   public nextToStGallen: number;
   private timeTableToStGallen = [4, 26, 34, 56];
-  private timeTableToZurich = [4, 26, 34, 56];
+  private timeTableToAlgetshausen = [30];
 
   constructor() {
     setInterval(() => {
@@ -23,9 +23,9 @@ export class NextConnectionsComponent implements OnInit {
       const minutesNow = this.now.getMinutes();
       this.secondsTo = this.getSeconds();
       this.nextToStGallen = this.getNextTime(minutesNow, this.timeTableToStGallen);
-      this.nextToZurich = this.getNextTime(minutesNow, this.timeTableToZurich);
+      this.nextToAlgetshausen = this.getNextTime(minutesNow, this.timeTableToAlgetshausen);
       this.minutesToStGallen = this.getMinutes(this.nextToStGallen);
-      this.minutesToZurich = this.getMinutes(this.nextToZurich);
+      this.minutesToAlgetshausen = this.getMinutes(this.nextToAlgetshausen);
     }, 1);
   }
 

@@ -1,22 +1,45 @@
 <div align="center">
-    <h2>Aktuelle Zeit: {{now | date:'H:mm:ss'}}</h2>
-    <br>
-    <table style="text-align: left">
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Nächste Verbindungen ab Uzwil">
+      <h2>Aktuelle Zeit: {{now | date:'H:mm:ss'}}</h2>
+      <br>
+      <table style="text-align: left">
         <tr>
-          <th>Nach</th>
+          <th>Richtung</th>
+          <th></th>
+          <th></th>
+          <th></th>
           <th>Abfahrtszeit</th>
+          <th></th>
+          <th></th>
+          <th></th>
           <th>Verbleibende Zeit</th>
         </tr>
         <tr>
-          <td>St. Gallen</td>
+          <td>St. Gallen / Zürich</td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>{{now.getHours() | number: '2.'}}:{{nextToStGallen | number: '2.'}}</td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>{{minutesToStGallen | number: '2.'}}:{{secondsTo | number: '2.'}}</td>
         </tr>
         <tr>
-          <td>Zürich</td>
-          <td>{{now.getHours() | number: '2.'}}:{{nextToZurich | number: '2.'}}</td>
-          <td>{{minutesToZurich | number: '2.'}}:{{secondsTo | number: '2.'}}</td>
+          <td>Algetshausen</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{now.getHours() | number: '2.'}}:{{nextToAlgetshausen | number: '2.'}}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{minutesToAlgetshausen | number: '2.'}}:{{secondsTo | number: '2.'}}</td>
         </tr>
       </table>
-
+    </mat-tab>
+    <mat-tab label="Fahrplan">
+    </mat-tab>
+  </mat-tab-group>
 </div>
