@@ -37,7 +37,6 @@ class requestHandler(BaseHTTPRequestHandler):
         try:
             config = getConfig()
             isAuthenticated = self.headers.get('Authorization') == 'Basic ' + config[CONFIG_APIAUTHORIZATION]
-
             if (self.path.endswith('/home-automation')):
                 send_response(self, 'interface to home automation devices', 200)
 
@@ -47,6 +46,14 @@ class requestHandler(BaseHTTPRequestHandler):
             elif (self.path.endswith('/home-automation/shelly/1/relay/0')):
                 if (isAuthenticated):
                     request = requests.get(config[CONFIG_SHELLY_1_URL] + config[CONFIG_SHELLYRELAY0], headers={'Authorization': 'Basic ' + config[CONFIG_SHELLYAUTHORIZATION]})
+                    send_response(self, request.text, 200)
+                else:
+                    send_response(self, 'not authenticated for shelly', 401)
+
+            elif (self.path.endswith('/home-automation/shelly/1/relay/0/button')):
+                if (isAuthenticated):
+                    request = requests.get(config[CONFIG_SHELLY_1_URL] + config[CONFIG_SHELLYRELAY0 ] + '?turn=on', headers={'Authorization': 'Basic ' + config[CONFIG_SHELLYAUTHORIZATION]})
+                    request = requests.get(config[CONFIG_SHELLY_1_URL] + config[CONFIG_SHELLYRELAY0] + '?turn=off', headers={'Authorization': 'Basic ' + config[CONFIG_SHELLYAUTHORIZATION]})
                     send_response(self, request.text, 200)
                 else:
                     send_response(self, 'not authenticated for shelly', 401)
