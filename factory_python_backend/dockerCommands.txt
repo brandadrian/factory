@@ -24,6 +24,6 @@ docker pull brandadr/test1:latest
 /***Speicher Tag in rar-File***/
 docker save brandadr/test > test.tar
 
-
 /***Falls auf NAS. Erster Port gewünschter Port, zweiter Port in Code definiert***/
-docker run -p 8892:8891 brandadr/test:latest
+docker pull brandadr/brand-api-python
+docker run -p 9100:9002 brandadr/test:latest

@@ -9,6 +9,8 @@ import { CommonService } from '../common.service';
 })
 export class HomeAutomationComponent implements OnInit {
 
+  now: Date = new Date();
+
   serverStatus: string;
 
   homeAutomationState: string;
@@ -19,7 +21,18 @@ export class HomeAutomationComponent implements OnInit {
 
   shelly2Relay0: string;
 
-  constructor(private commonService: CommonService) { }
+  doorOpenTimestamp: Date;
+
+  doorClosedTimestamp: Date;
+
+  doorState: string;
+
+  constructor(private commonService: CommonService) { 
+    setInterval(() => {
+      let isDoorOpen = this.getDoorState();
+      this.doorState = this.getDoorStateString(isDoorOpen);
+    }, 1);
+  }
 
   ngOnInit() {
     this.commonService.getPythonServerStatus()
@@ -38,4 +51,13 @@ export class HomeAutomationComponent implements OnInit {
     .subscribe((data: Object) => this.shelly2Relay0 = data['message']);
   }
 
+  getDoorState()
+  {
+    return this.shelly2Relay0?.substr(8, 4) == "true";
+  }
+
+  getDoorStateString(doorstate: boolean)
+  {
+    return doorstate ? "Offen" : "Geschlossen";
+  }
 }
