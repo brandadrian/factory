@@ -1,6 +1,5 @@
 ﻿
 #$example call: .\upload.ps1 -source C:\Users\source -destination ftp://user:passworda@domain.ch/html/website
-Uploading favicon.ico
 param(
     [Parameter(Mandatory = $true)]
     [string] $source,
@@ -17,7 +16,7 @@ foreach ($file in $files)
 {
     if ($file.Name -ne $excludeFile)
     {
-        Write-Host "Uploading $file"
+        #Write-Host "Uploading $file"
         $webclient.UploadFile("$destination/$file", $file.FullName)
     }
 } 
