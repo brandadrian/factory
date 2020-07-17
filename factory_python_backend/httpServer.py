@@ -13,7 +13,8 @@ import requests
 import configparser 
 
 CONFIG_PORT = 'port'
-CONFIG_SHELLYURL = "shelly-url"
+CONFIG_SHELLY_1_URL = "shelly1-url"
+CONFIG_SHELLY_2_URL = "shelly2-url"
 CONFIG_SHELLYRELAY0 = 'shelly-relay0'
 CONFIG_SHELLYAUTHORIZATION = 'shelly-authorization-token'
 CONFIG_APIAUTHORIZATION = 'api-authorization-token'
@@ -43,16 +44,19 @@ class requestHandler(BaseHTTPRequestHandler):
             elif (self.path.endswith('/home-automation/shelly')):
                 send_response(self, 'interface to shelly devices', 200)
 
-            elif (self.path.endswith('/home-automation/shelly/relay/0')):
+            elif (self.path.endswith('/home-automation/shelly/1/relay/0')):
                 if (isAuthenticated):
-                    request = requests.get(config[CONFIG_SHELLYURL] + config[CONFIG_SHELLYRELAY0], headers={'Authorization': 'Basic ' + config[CONFIG_SHELLYAUTHORIZATION]})
+                    request = requests.get(config[CONFIG_SHELLY_1_URL] + config[CONFIG_SHELLYRELAY0], headers={'Authorization': 'Basic ' + config[CONFIG_SHELLYAUTHORIZATION]})
                     send_response(self, request.text, 200)
                 else:
                     send_response(self, 'not authenticated for shelly', 401)
 
-            elif (self.path.endswith('/home-automation/shelly/relay/42')):
-                request = requests.get(config[CONFIG_SHELLYURL] + config[CONFIG_SHELLYRELAY0], headers={'Authorization': 'Basic ' + config[CONFIG_SHELLYAUTHORIZATION]})
-                send_response(self, request.text, 200)
+            elif (self.path.endswith('/home-automation/shelly/2/relay/0')):
+                if (isAuthenticated):
+                    request = requests.get(config[CONFIG_SHELLY_2_URL] + config[CONFIG_SHELLYRELAY0], headers={'Authorization': 'Basic ' + config[CONFIG_SHELLYAUTHORIZATION]})
+                    send_response(self, request.text, 200)
+                else:
+                    send_response(self, 'not authenticated for shelly', 401)
 
             elif (self.path.endswith('/server-state')):
                 send_response(self, 'server running', 200)

@@ -1,0 +1,29 @@
+/*
+-Kommandozeile öffnen und in Ordner mit Docker-Projekt arbeiten
+-Docker-File erstellen
+-In Synology einloggen
+ - sudo -i
+ - docker run brandadr/test1
+*/
+
+/***Listet alle images auf***/
+docker images ls 
+
+/***Erstellt einen Container mit Tag-Name brandadr/test1***/
+docker build -t brandadr/test1 
+
+/***Startet Container mit Tag brandadr/test1***/
+docker run brandadr/test1
+
+/***Lädt Tag auf hub.docker.com. Immer mit Tag arbeiten da viel schneller***/
+docker push brandadr/test1:latest
+
+/***Lädt Tag auf lokale Umgebung. Immer mit Tag arbeiten da viel schneller***/
+docker pull brandadr/test1:latest
+
+/***Speicher Tag in rar-File***/
+docker save brandadr/test > test.tar
+
+
+/***Falls auf NAS. Erster Port gewünschter Port, zweiter Port in Code definiert***/
+docker run -p 8892:8891 brandadr/test:latest

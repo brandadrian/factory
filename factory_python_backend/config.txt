@@ -1,6 +1,7 @@
 [server-config]
 port = 9002
-shelly-url = http://192.168.1.136
+shelly1-url = http://192.168.1.136
 shelly-relay0 = /relay/0
+shelly2-url = http://192.168.1.148
 shelly-authorization-token = YWRtaW46YWRtaW4=
 api-authorization-token = YWRtaW46bGV0bWVpbg==

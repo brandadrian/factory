@@ -34,8 +34,8 @@ export class CommonService {
     return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly');
   }
 
-  getPythonServerHomeAutomationShellyRelay0()
+  getPythonServerHomeAutomationShellyRelay0(shellyNumber: number)
   {
-    return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly/relay/0', this.header);
+    return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly/' + shellyNumber +'/relay/0', this.header);
   }
 }
