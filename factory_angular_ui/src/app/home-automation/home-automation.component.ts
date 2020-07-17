@@ -27,6 +27,8 @@ export class HomeAutomationComponent implements OnInit {
 
   doorState: string;
 
+  pin: string="";
+
   constructor(private commonService: CommonService) { 
     setInterval(() => {
       let isDoorOpen = this.getDoorState();
@@ -59,5 +61,17 @@ export class HomeAutomationComponent implements OnInit {
   getDoorStateString(doorstate: boolean)
   {
     return doorstate ? "Offen" : "Geschlossen";
+  }
+
+  openDoor1() {
+    if (this.pin == "9240")
+    {
+      return this.commonService.pressShellyButton(1)
+      .subscribe((data: Object) => {    });
+    }
+    else
+    {
+      alert("PIN falsch")
+    }
   }
 }

@@ -23,6 +23,12 @@
           <td>{{now | date:'dd:MM:yyyy H:mm:ss'}}</td>
         </tr>
       </table>
+      <br>
+      <br>
+      <button mat-raised-button color="primary" (click)="openDoor1()">Tor Rechts bedienen</button>
+      <br>
+      <br>
+      <input type="text" [(ngModel)]="pin">
     </div>
   </mat-tab>
   <mat-tab label="API-Übersicht">

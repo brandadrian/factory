@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatTableModule, MatTabsModule } from "@angular/material";
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { LayoutModule } from '@angular/cdk/layout';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +36,7 @@ import { InfoComponent } from './info/info.component';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
+    FormsModule,
     MatIconModule,
     MatListModule,
     MatTableModule,
