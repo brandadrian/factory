@@ -1,8 +1,13 @@
-﻿$source = "C:\Users\brand\OneDrive\Home\Dokumente\GitHub\factory\factory_angular_ui\dist\kaese"
-$configurationFile = "C:\Users\brand\OneDrive\Home\Dokumente\GitHub\factory\factory_angular_ui\upload_config.txt"
-$destination = Get-Content $configurationFile
-
-$excludeFile = "index.html"
+﻿
+#$example call: .\upload.ps1 -source C:\Users\source -destination ftp://user:passworda@domain.ch/html/website
+Uploading favicon.ico
+param(
+    [Parameter(Mandatory = $true)]
+    [string] $source,
+    [Parameter(Mandatory = $true)]
+    [string] $destination,
+    [string] $excludeFile = "index.html"
+)
 
 $webclient = New-Object -TypeName System.Net.WebClient
 
