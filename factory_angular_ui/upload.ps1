@@ -1,5 +1,5 @@
-﻿$source = "c:\temp"
-$configurationFile = "C:\temp\configuration.txt"
+﻿$source = {"C:\Users\brand\OneDrive\Home\Dokumente\GitHub\factory\factory_angular_ui\dist\kaese"
+$configurationFile = "C:\Users\brand\OneDrive\Home\Dokumente\GitHub\factory\factory_angular_ui\upload_config.txt"
 $destination = Get-Content $configurationFile
 
 $excludeFile = "index.html"
