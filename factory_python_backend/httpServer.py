@@ -137,7 +137,7 @@ def log_server(message):
 
 def log_internal(message, fileName):
     dateTimeObj = datetime.now()
-    messageInternal = dateTimeObj.strftime("%d:%m:%Y %H:%M:%S") + "; " + message + '\n'
+    messageInternal = dateTimeObj.strftime("%d/%m/%Y %H:%M:%S") + "; " + message + '\n'
     f = open(fileName, "a")
     f.write(messageInternal)
     f.close()
