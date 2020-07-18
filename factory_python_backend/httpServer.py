@@ -12,6 +12,9 @@ import ssl
 import requests
 import configparser 
 
+LOG_SHELLY = "shellyLog.txt"
+LOG_SERVER = "httpServerLog.txt"
+
 CONFIG_PORT = 'port'
 CONFIG_SHELLY_1_URL = "shelly1-url"
 CONFIG_SHELLY_2_URL = "shelly2-url"
@@ -32,7 +35,7 @@ class requestHandler(BaseHTTPRequestHandler):
         
     ###GET
     def do_GET(self):
-        log('GET; ' + self.path + '; IP; ' + self.client_address[0])
+        log_server('GET; ' + self.path + '; IP; ' + self.client_address[0])
 
         try:
             config = getConfig()
@@ -42,6 +45,21 @@ class requestHandler(BaseHTTPRequestHandler):
 
             elif (self.path.endswith('/home-automation/shelly')):
                 send_response(self, 'interface to shelly devices', 200)
+
+            elif (self.path.endswith('/home-automation/shelly-log')):
+                f=open(LOG_SHELLY, "r")
+                logLines = f.readlines()
+                logLines.reverse()
+                f.close() 
+                send_response(self, logLines, 200)
+
+            elif (self.path.endswith('/home-automation/shelly-log/shelly2/sw-on')):
+                log_shelly('Shelly2; SW-ON')
+                send_response(self, "Log set", 200)
+
+            elif (self.path.endswith('/home-automation/shelly-log/shelly2/sw-off')):
+                log_shelly('Shelly2; SW-OFF')
+                send_response(self, "Log set", 200)
 
             elif (self.path.endswith('/home-automation/shelly/1/relay/0')):
                 if (isAuthenticated):
@@ -69,7 +87,7 @@ class requestHandler(BaseHTTPRequestHandler):
                 send_response(self, 'server running', 200)
 
             elif (self.path.endswith('/status')):
-                f=open("httpServerLog.txt", "r")
+                f=open(LOG_SERVER, "r")
                 logLines = f.readlines()
                 logLines.reverse()
                 f.close() 
@@ -79,20 +97,21 @@ class requestHandler(BaseHTTPRequestHandler):
                 self.send_response(404)                
         except:
             error =  sys.exc_info()[0]
-            log("Unexpected error; " + error)
+            log_server("Unexpected error; " + error)
             print("Unexpected error:", error)
             self.send_response(500)
             self.end_headers()   
             
     ###POST
     def do_POST(self):
-        log('POST; ' + self.path + '; IP; ' + self.client_address[0])
+        log_server('POST; ' + self.path + '; IP; ' + self.client_address[0])
         try:
-            if (self.path.endswith('/cars')):
+            if (self.path.endswith('/home-automation/shelly-log')):
                 content_len = int(self.headers.get('Content-Length'))
                 post_body = self.rfile.read(content_len)
                 self.send_response(200)
-                print(post_body)
+                log_shelly(post_body.decode('UTF-8'))
+
             else:
                 self.send_response(404)
             self.end_headers()
@@ -107,13 +126,19 @@ def serve():
     server_address = ('', PORT)
     server = HTTPServer(server_address, requestHandler)
     print('Server running on port: ', PORT)
-    log('server started on port: ' + str(PORT))
+    log_server('server started on port: ' + str(PORT))
     server.serve_forever()
 
-def log(message):
+def log_shelly(message):
+    log_internal(message, LOG_SHELLY)
+
+def log_server(message):
+    log_internal(message, LOG_SERVER)
+
+def log_internal(message, fileName):
     dateTimeObj = datetime.now()
-    messageInternal = dateTimeObj.strftime("%m/%d/%Y, %H:%M:%S") + "; " + message + '\n'
-    f = open("httpServerLog.txt", "a")
+    messageInternal = dateTimeObj.strftime("%d:%m:%Y %H:%M:%S") + "; " + message + '\n'
+    f = open(fileName, "a")
     f.write(messageInternal)
     f.close()
 

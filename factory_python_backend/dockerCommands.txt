@@ -26,4 +26,4 @@ docker save brandadr/test > test.tar
 
 /***Falls auf NAS. Erster Port gewünschter Port, zweiter Port in Code definiert***/
 docker pull brandadr/brand-api-python
-docker run -p 9100:9002 brandadr/test:latest
+docker run -p 9100:9002 brandadr/brand-api-python:latest
