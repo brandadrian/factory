@@ -2,7 +2,8 @@
   <mat-tab label="Garagentor">
     <div align="center">
       <br>
-      <br>
+	  <br>
+	  
       <table style="text-align: left">
         <tr>
           <th>Tor</th>
@@ -14,27 +15,33 @@
           <th>Geschlossen</th>
         </tr>
         <tr>
-          <td>Rechts</td>
-          <td>      </td>
-          <td>{{doorState}}</td>
+          <td>{{doorRight.doorName}}</td>
+          <td>      				</td>
+          <td>{{doorRight.doorState}}</td>
           <td>             </td>
-          <td>{{now | date:'dd:MM:yyyy H:mm:ss'}}</td>
-          <td>                                   </td>
-          <td>{{now | date:'dd:MM:yyyy H:mm:ss'}}</td>
+          <td>{{doorRight.doorOpenAt | date:'d.MM.yyy H:mm:ss'}}</td>
+          <td>              </td>
+          <td>{{doorRight.doorClosedAt | date:'d.MM.yyy H:mm:ss'}}</td>
         </tr>
       </table>
       <br>
       <br>
-      <button mat-raised-button color="primary" (click)="openDoor1()">Tor Rechts bedienen</button>
-      <br>
-      <br>
-      <input type="text" [(ngModel)]="pin">
+	  <button mat-raised-button color="primary" (click)="openDoor1()">Tor Rechts bedienen</button>
+	  <br>
+	  <br>
+	  <mat-form-field class="example-form-field">
+		<mat-label>PIN</mat-label>
+		<input matInput type="text" [(ngModel)]="pin">
+		<button mat-button *ngIf="pin" matSuffix mat-icon-button aria-label="Clear" (click)="pin=''">
+		  <mat-icon>close</mat-icon>
+		</button>
+	  </mat-form-field>
     </div>
   </mat-tab>
   <mat-tab label="API-Übersicht">
     <div align="center">
 		<br>
-		<b>Kommunikation mit Home Automation Geräten über einen Python Web Service hosted als Docker Container auf Synology NAS.</b>
+		<p>Kommunikation mit Home Automation Geräten über einen Python Web Service hosted als Docker Container auf Synology NAS.</p>
 		<br>
 		<br>
 		<br>
@@ -42,53 +49,24 @@
 			<tr>
 				<th>Ressource</th>
 				<th></th>
-				<th>Beschreibung</th>
-				<th></th>
-				<th>Response</th>
+				<th>Antwort</th>
 			</tr>
 			<tr>
-				<td>/server-state)</td>
-				<td>  </td>
-				<td>Aktueller Status vom Server</td>
+				<td>Server Status</td>
 				<td>  </td>
 				<td>{{serverStatus}}</td>
 			</tr>
 			<tr>
-				<td>/home-automation</td>
-				<td>  </td>
-				<td>Home Automation Einstieg</td>
-				<td>  </td>
-				<td>{{homeAutomationState}}</td>
-			</tr>
-			<tr>
-				<td>/home-automation/shelly</td>
-				<td>  </td>
-				<td>Shelly Einstieg API</td>
-				<td>  </td>
-				<td>{{shellyState}}</td>
-			</tr>
-			<tr>
-				<td>/home-automation/shelly/1/relay/0</td>
-				<td>  </td>
-				<td>Abfrage von Relay0 von Shelly1 nur mit Authentication möglich.</td>
+				<td>Relay0  Shelly1</td>
 				<td>  </td>
 				<td>{{shelly1Relay0}}</td>
 			</tr>
 			<tr>
-				<td>/home-automation/shelly/2/relay/0</td>
-				<td>  </td>
-				<td>Abfrage von Relay0 von Shelly2 nur mit Authentication möglich.</td>
+				<td>Relay0 Shelly2</td>
 				<td>  </td>
 				<td>{{shelly2Relay0}}</td>
 			</tr>
 		</table>
 	</div>
   </mat-tab>
-</mat-tab-group>
-
-
-
-
-
-
- 
+</mat-tab-group> 

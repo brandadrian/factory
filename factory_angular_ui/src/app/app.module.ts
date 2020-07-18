@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatTableModule, MatTabsModule } from "@angular/material";
+import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatTableModule, MatTabsModule, MatInputModule } from "@angular/material";
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { LayoutModule } from '@angular/cdk/layout';
@@ -41,6 +41,7 @@ import { InfoComponent } from './info/info.component';
     MatListModule,
     MatTableModule,
     MatTabsModule,
+    MatInputModule,
     HttpClientModule,
     FlexLayoutModule
   ],

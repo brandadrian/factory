@@ -23,16 +23,6 @@ export class CommonService {
     return this.http.get('http://brandadrian.synology.me:9100/server-state');
   }
 
-  getPythonServerHomeAutomationState()
-  {
-    return this.http.get('http://brandadrian.synology.me:9100/home-automation');
-  }
-
-  getPythonServerHomeAutomationShellyState()
-  {
-    return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly');
-  }
-
   getPythonServerHomeAutomationShellyRelay0(shellyNumber: number)
   {
     return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly/' + shellyNumber +'/relay/0', this.header);
@@ -43,8 +33,9 @@ export class CommonService {
     return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly-log');
   }
 
-  pressShellyButton(shellyNumber: number)
+  pressShellyButton(shellyNumber: number, pin: string)
   {
+    let header =new HttpHeaders().set('Authorization',  `Basic YWRtaW46bGV0bWVpbg==`);
     return this.http.get('http://brandadrian.synology.me:9100/home-automation/shelly/' + shellyNumber +'/relay/0/button', this.header);
   }
 }

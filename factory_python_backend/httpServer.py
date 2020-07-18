@@ -40,13 +40,8 @@ class requestHandler(BaseHTTPRequestHandler):
         try:
             config = getConfig()
             isAuthenticated = self.headers.get('Authorization') == 'Basic ' + config[CONFIG_APIAUTHORIZATION]
-            if (self.path.endswith('/home-automation')):
-                send_response(self, 'interface to home automation devices', 200)
 
-            elif (self.path.endswith('/home-automation/shelly')):
-                send_response(self, 'interface to shelly devices', 200)
-
-            elif (self.path.endswith('/home-automation/shelly-log')):
+            if (self.path.endswith('/home-automation/shelly-log')):
                 f=open(LOG_SHELLY, "r")
                 logLines = f.readlines()
                 logLines.reverse()
