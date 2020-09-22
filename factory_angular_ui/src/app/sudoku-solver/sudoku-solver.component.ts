@@ -9,33 +9,40 @@ import { CommonService } from '../common.service';
 })
 export class SudokuSolverComponent implements OnInit {
 
-  dataObject: Object;
-  result: string;
-  origin: string;
-  resultMatrix: Object;
-  originMatrix: Object;
-
-  private counter: number;
+  public result: Array<number>;
+  public input: Array<number>;
 
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
+    this.createInput();
   }
 
-  clickButton() {
-    return this.commonService.getMessage()
-    .subscribe((data: Object) => this.displayResult(data));
+  clickCreateArrayButton() {
+    this.createInput();
   }
 
-  getPythonServerStatusClick() {
-    return this.commonService.getPythonServerStatus()
-    .subscribe((data: Object) => this.result = data['message']);
+  clickBubbleSortButton() {
+    this.result = this.solveBubbleSortArray(this.input);
   }
 
-  displayResult(data: Object){
-    this.result = "SudokuSolvedString:" + data["sudokuSolvedString"];
-    this.origin = "SudokuToSolveString:" + data["sudokuToSolveString"];
-    this.resultMatrix = data["sudokuSolved"];
-    this.originMatrix = data["sudokuToSolve"];
+  solveBubbleSortArray(data: Array<number>) {
+
+    for (let i = 0; i < data.length; i++) {
+      for (let j = 0; j < data.length - i - 1; j++) {
+        if (data[j] > data[j + 1]) {
+          let temp = data[j];
+          data[j] = data[j + 1];
+          data[j + 1] = temp; 
+        }
+      }
+    }
+
+    return data;
+  }
+
+  createInput() {
+    const length = Math.floor(Math.random() * 14) + 1;
+    this.input = Array.from({length: length}, () => Math.floor(Math.random() * length));
   }
 }
