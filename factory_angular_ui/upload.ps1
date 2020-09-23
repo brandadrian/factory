@@ -12,13 +12,15 @@ $webclient = New-Object -TypeName System.Net.WebClient
 
 $files = Get-ChildItem $source | where { ! $_.PSIsContainer }
 
+Write-Host "Start..."
 foreach ($file in $files)
 {
     if ($file.Name -ne $excludeFile)
     {
-        #Write-Host "Uploading $file"
+        Write-Host "Uploading $file"
         $webclient.UploadFile("$destination/$file", $file.FullName)
     }
 } 
 
 $webclient.Dispose()
+Write-Host "Done..."

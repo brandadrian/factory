@@ -9,10 +9,8 @@ import { CommonService } from '../common.service';
 })
 export class SudokuSolverComponent implements OnInit {
 
-  public result: Array<number>;
+  public result: Array<any>;
   public input: Array<number>;
-
-  private tempResult: Array<any>;
 
   constructor(private commonService: CommonService) { }
 
@@ -48,16 +46,17 @@ export class SudokuSolverComponent implements OnInit {
   }
 
   displayResult(results: Array<any>) {
-    
+
     results.forEach((result, i) => {
       setTimeout(() => {
         this.result = result.dataCopy;
-      }, i * 500);
+      }, i * 10);
     });
   }
 
   createInput() {
-    const length = Math.floor(Math.random() * 14) + 1;
+    const length = 20;//Math.floor(Math.random() * 20) + 1;
     this.input = Array.from({length: length}, () => Math.floor(Math.random() * length));
+    this.result = this.input;
   }
 }
