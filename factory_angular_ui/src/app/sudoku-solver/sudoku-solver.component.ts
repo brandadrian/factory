@@ -56,7 +56,10 @@ export class SudokuSolverComponent implements OnInit {
 
   createInput() {
     const length = 20;//Math.floor(Math.random() * 20) + 1;
-    this.input = Array.from({length: length}, () => Math.floor(Math.random() * length));
+    const min = 1
+    const max = 100
+    
+    this.input = Array.from({length: length}, () => Math.floor(Math.random() * (max - min + 1) + min));
     this.result = this.input;
   }
 }
