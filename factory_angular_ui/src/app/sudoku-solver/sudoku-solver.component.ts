@@ -12,6 +12,8 @@ export class SudokuSolverComponent implements OnInit {
   public result: Array<number>;
   public input: Array<number>;
 
+  private tempResult: Array<any>;
+
   constructor(private commonService: CommonService) { }
 
   ngOnInit() {
@@ -23,22 +25,35 @@ export class SudokuSolverComponent implements OnInit {
   }
 
   clickBubbleSortButton() {
-    this.result = this.solveBubbleSortArray(this.input);
+    let results = this.solveBubbleSortArray(this.input);
+    this.displayResult(results);
   }
 
   solveBubbleSortArray(data: Array<number>) {
+    let results = new Array<any>();
 
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < data.length - i - 1; j++) {
         if (data[j] > data[j + 1]) {
           let temp = data[j];
           data[j] = data[j + 1];
-          data[j + 1] = temp; 
+          data[j + 1] = temp;
+          let dataCopy = [...data];
+          results.push({dataCopy, j})
         }
       }
     }
 
-    return data;
+    return results;
+  }
+
+  displayResult(results: Array<any>) {
+    
+    results.forEach((result, i) => {
+      setTimeout(() => {
+        this.result = result.dataCopy;
+      }, i * 500);
+    });
   }
 
   createInput() {
