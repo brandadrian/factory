@@ -9,9 +9,9 @@
 {{result}}
 
 
-<ul style="list-style-type:none">
-  <li *ngFor="let item of result" style="display:inline;">
+<ul>
+  <li *ngFor="let item of chartResult">
     {{ item }}
-    <canvas id="myCanvas" width="10" height={{item*2}} style="border:1px solid #000000;background-color:blue;"></canvas>
+    <canvas id="chartCanvas" width="10" height={{item*2}}></canvas>
   </li>
 </ul>

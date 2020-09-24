@@ -1,0 +1,11 @@
+canvas {
+	background-color:blue;
+}
+
+ul {
+    list-style-type:none;
+}
+
+li {
+    display:inline;
+}

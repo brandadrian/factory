@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SortingAlgorithmResultItem } from './services/sorting-algorithm-result';
 
-import { CommonService } from '../common.service';
+import { SortingAlgorithmsService } from './services/sorting-algorithms.service';
 
 @Component({
   selector: 'app-sudoku-solver',
@@ -9,10 +10,11 @@ import { CommonService } from '../common.service';
 })
 export class SudokuSolverComponent implements OnInit {
 
-  public result: Array<any>;
+  public result: Array<number>;
+  public chartResult: Array<number>;
   public input: Array<number>;
 
-  constructor(private commonService: CommonService) { }
+  constructor(private sortingAlgorithmsService: SortingAlgorithmsService) { }
 
   ngOnInit() {
     this.createInput();
@@ -23,33 +25,16 @@ export class SudokuSolverComponent implements OnInit {
   }
 
   clickBubbleSortButton() {
-    let results = this.solveBubbleSortArray(this.input);
-    this.displayResult(results);
+    let result = this.sortingAlgorithmsService.solveBubbleSortArray(this.input);
+    this.result = result.result.data;
+    this.displayResult(result.resultSteps);
   }
 
-  solveBubbleSortArray(data: Array<number>) {
-    let results = new Array<any>();
-
-    for (let i = 0; i < data.length; i++) {
-      for (let j = 0; j < data.length - i - 1; j++) {
-        if (data[j] > data[j + 1]) {
-          let temp = data[j];
-          data[j] = data[j + 1];
-          data[j + 1] = temp;
-          let dataCopy = [...data];
-          results.push({dataCopy, j})
-        }
-      }
-    }
-
-    return results;
-  }
-
-  displayResult(results: Array<any>) {
+  displayResult(results: Array<SortingAlgorithmResultItem>) {
 
     results.forEach((result, i) => {
       setTimeout(() => {
-        this.result = result.dataCopy;
+        this.chartResult = result.data;
       }, i * 10);
     });
   }
@@ -61,5 +46,6 @@ export class SudokuSolverComponent implements OnInit {
     
     this.input = Array.from({length: length}, () => Math.floor(Math.random() * (max - min + 1) + min));
     this.result = this.input;
+    this.chartResult = this.input;
   }
 }
