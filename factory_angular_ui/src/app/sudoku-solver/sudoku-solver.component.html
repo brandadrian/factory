@@ -10,8 +10,8 @@
 
 
 <ul style="list-style-type:none">
-  <li *ngFor="let item of result">
-    <canvas id="myCanvas" width={{item*10}} height="10" style="border:1px solid #000000;background-color:blue;"></canvas>
+  <li *ngFor="let item of result" style="display:inline;">
     {{ item }}
+    <canvas id="myCanvas" width="10" height={{item*2}} style="border:1px solid #000000;background-color:blue;"></canvas>
   </li>
 </ul>
