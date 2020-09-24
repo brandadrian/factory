@@ -26,8 +26,11 @@ export class SudokuSolverComponent implements OnInit {
 
   clickBubbleSortButton() {
     let result = this.sortingAlgorithmsService.solveBubbleSortArray(this.input);
-    this.result = result.result.data;
-    this.displayResult(result.resultSteps);
+
+    if (result?.result?.data) {
+      this.result = result.result.data;
+      this.displayResult(result.resultSteps);
+    }
   }
 
   displayResult(results: Array<SortingAlgorithmResultItem>) {
