@@ -10,8 +10,8 @@
 
 
 <ul>
-  <li *ngFor="let item of chartResult">
-    {{ item }}
-    <canvas id="chartCanvas" width="10" height={{item*2}}></canvas>
+  <li *ngFor="let item of chartResult.data;let indexOfElement=index;">
+      <canvas *ngIf="chartResult.changedIndex == (indexOfElement - 1)" id="chartCanvas" width="5" height={{item*2}} style="background-color:red;"></canvas>
+      <canvas *ngIf="chartResult.changedIndex != (indexOfElement - 1)" id="chartCanvas" width="5" height={{item*2}} style="background-color:blue;"></canvas>
   </li>
 </ul>

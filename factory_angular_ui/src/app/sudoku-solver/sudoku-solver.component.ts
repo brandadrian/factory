@@ -11,7 +11,7 @@ import { SortingAlgorithmsService } from './services/sorting-algorithms.service'
 export class SudokuSolverComponent implements OnInit {
 
   public result: Array<number>;
-  public chartResult: Array<number>;
+  public chartResult: SortingAlgorithmResultItem;
   public input: Array<number>;
 
   constructor(private sortingAlgorithmsService: SortingAlgorithmsService) { }
@@ -37,8 +37,8 @@ export class SudokuSolverComponent implements OnInit {
 
     results.forEach((result, i) => {
       setTimeout(() => {
-        this.chartResult = result.data;
-      }, i * 10);
+        this.chartResult = result;
+      }, i * 100);
     });
   }
 
@@ -49,6 +49,35 @@ export class SudokuSolverComponent implements OnInit {
     
     this.input = Array.from({length: length}, () => Math.floor(Math.random() * (max - min + 1) + min));
     this.result = this.input;
-    this.chartResult = this.input;
+    this.chartResult = { data: this.input, changedIndex: 0 };
+  }
+
+  isAtFinalPosition(items: Array<number>, index: number) {
+
+    if (!items) {
+      return false;
+    }
+
+    let number = items[index];
+    let upper = items.slice(index + 1, items.length - 1);
+    let lower = items.slice(0, index);
+
+    console.log(number)
+    console.log(upper)
+    console.log(lower)
+
+    for(let item in upper) {
+      if (Number(item) < number) {
+        return false;
+      }
+    }
+    
+    for(let item in lower) {
+      if (Number(item) > number) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }

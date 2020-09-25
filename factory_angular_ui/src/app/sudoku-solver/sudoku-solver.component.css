@@ -1,5 +1,7 @@
 canvas {
-	background-color:blue;
+    /* background-color:blue; */
+    margin-left: 1px;
+    margin-right: 1px;
 }
 
 ul {
