@@ -10,7 +10,7 @@
 docker images ls 
 
 /***Erstellt einen Container mit Tag-Name brandadr/test1***/
-docker build -t brandadr/test1 
+docker build . -t brandadr/test1 
 
 /***Startet Container mit Tag brandadr/test1***/
 docker run brandadr/test1
