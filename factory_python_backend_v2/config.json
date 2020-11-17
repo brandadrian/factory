@@ -1,6 +1,0 @@
-{
-	"flask_port": 8080,
-    "mongo_db_name": "db-name",
-    "mongo_db_collection": "collection-name",
-	"mongo_db_connection": "mongodb+srv://<username>:<pwd>@cluster0.srbj2.mongodb.net/mongo-db-name?retryWrites=true&w=majority"
-}
