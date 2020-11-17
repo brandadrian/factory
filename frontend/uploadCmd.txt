@@ -1,2 +1,0 @@
-.\upload.ps1 -source C:\Users\brand\OneDrive\Home\Dokumente\GitHub\factory\factory_angular_ui\dist\kaese -destination ftp://web324:khxy100%web324@adrianbrand.ch/html/adrianbrand/factory
-.\upload.ps1 -source C:\Users\brand\OneDrive\Home\Dokumente\GitHub\factory\factory_angular_ui\dist\kaese\assets\img -destination ftp://web324:khxy100%web324@adrianbrand.ch/html/adrianbrand/factory/assets/img
