@@ -4,6 +4,10 @@ from mongoDbAccess import mongoDbAccess
 
 app = Flask(__name__)
 
+@app.route('/state')
+def getState():
+    return 'running'
+
 @app.route('/running-event')
 def get():
     return runningEventDbAccess.readAll()
@@ -38,5 +42,5 @@ if __name__ == '__main__':
         dbName = data["mongo_db_name"]
     
     runningEventDbAccess = mongoDbAccess(connectionString, collectionRunningEvent, dbName)
-    app.run('', port)
+    app.run('0.0.0.0', port)
     
