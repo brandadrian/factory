@@ -25,8 +25,15 @@ class mongoDbAccess:
     
     def readById(self, id):
         document = self.collection.find_one({"_id": ObjectId(id)})
-        #document['_id'] = str(document['_id'])
-        return json.dumps(str(document))
+        document['_id'] = str(document['_id'])
+        return json.dumps(document)
+
+    #newValue e.g. {"name": "Hans Muster"}
+    def update(self, id, newValue):
+        self.collection.update_one(
+            {"_id": ObjectId(id)},
+            {"$set": newValue}
+        )
 
     def delete(self, id):
         self.collection.delete_one({"_id": ObjectId(id)})  

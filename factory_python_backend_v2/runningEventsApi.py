@@ -18,6 +18,12 @@ def post():
     runningEventDbAccess.save(request_data)
     return ('', 200)
 
+@app.route('/running-event/<id>', methods=['PUT'])
+def put(id):
+    request_data = request.get_json()
+    runningEventDbAccess.update(id, request_data)
+    return ('', 200)
+
 @app.route('/running-event/<id>', methods=['DELETE'])
 def delete(id):
     runningEventDbAccess.delete(id)
