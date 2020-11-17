@@ -2,25 +2,40 @@ import json
 from pymongo import MongoClient
 
 class dataAccess:
-    def getCollection():
+   
+    def save(document):
         with open('config.json') as data_file:
             data = json.load(data_file)
-            mongo_db_connection = data["mongo_db_connection"]
-        
-        client = MongoClient(mongo_db_connection)
-        db = client["mongo_db_name"]
-        collection = db["mongo_db_collection"]
-        return collection
+            connection = data["mongo_db_connection"]
+            collectionName = data["mongo_db_collection"]
+            dbName = data["mongo_db_name"]
     
-    def save(document):
-        collection = getCollection()
+        client = MongoClient(connection)
+        db = client[dbName]
+        collection = db[collectionName]
         collection.insert_one(document)
     
     def readAll():
-        collection = getCollection()
+        with open('config.json') as data_file:
+            data = json.load(data_file)
+            connection = data["mongo_db_connection"]
+            collectionName = data["mongo_db_collection"]
+            dbName = data["mongo_db_name"]
+    
+        client = MongoClient(connection)
+        db = client[dbName]
+        collection = db[collectionName]
         return collection.find()
     
     def delete(id):
-        collection = getCollection(self)
+        with open('config.json') as data_file:
+            data = json.load(data_file)
+            connection = data["mongo_db_connection"]
+            collectionName = data["mongo_db_collection"]
+            dbName = data["mongo_db_name"]
+    
+        client = MongoClient(connection)
+        db = client[dbName]
+        collection = db[collectionName]
         collection.delete_one({"_id": ObjectId(id)})  
  
