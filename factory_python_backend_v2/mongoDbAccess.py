@@ -6,7 +6,7 @@ class mongoDbAccess:
 
     #databaseName e.g "my-mongo-db"
     #collectionName e.g. "my-mongo-db-collection"
-    #connectionString e.g. "mongodb+srv://root:root@cluster0.srbj2.mongodb.net/mongo-db-name?retryWrites=true&w=majority"
+    #connectionString e.g. "mongodb+srv://<username>:<pwd>@cluster0.srbj2.mongodb.net/mongo-db-name?retryWrites=true&w=majority"
     def __init__(self, connectionString, collectionName, databaseName):
         client = MongoClient(connectionString)
         db = client[databaseName]
