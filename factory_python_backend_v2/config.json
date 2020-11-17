@@ -1,4 +1,5 @@
 {
+	"flask_port": 8080
     "mongo_db_name": "running-event-db",
     "mongo_db_collection": "running-event",
 	"mongo_db_connection": "mongodb+srv://root:root@cluster0.srbj2.mongodb.net/running-event-db?retryWrites=true&w=majority"

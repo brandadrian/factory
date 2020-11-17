@@ -18,7 +18,7 @@ def get():
 
 @app.route('/running-event', methods=['POST'])
 def post():
-    documents = dataAccess.save(req_data)
+    dataAccess.save(req_data)
     return ('', 200)
 
 @app.route('/running-event/<id>', methods=['DELETE'])
@@ -27,5 +27,8 @@ def delete(id):
     return ('', 200)
 
 if __name__ == '__main__':
-    app.run(host='', port=8080)
+    with open('config.json') as data_file:
+        data = json.load(data_file)
+        port = data["flask_port"]
+    app.run('', port)
 
