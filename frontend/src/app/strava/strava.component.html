@@ -1,54 +1,17 @@
-<br>
-<br>
-Strava API...
- <!-- <a href="https://www.strava.com/oauth/authorize?client_id=34855&response_type=code&redirect_uri=http://kaese.adrianbrand.ch&approval_prompt=force">Strava Login</a>
-     
-  <br>
-  <button type="button" onclick="authorizeCookie(document.location.href)">Autorize</button>
-  <button type="button" onclick="getData()">Request data</button>
-  <button type="button" onclick="document.getElementById('response').innerHTML = ''">Clear data</button>
-  <br>
-  Response:
-  <br>
-  <p id="response"></p>
+<div class="wrapper" fxLayout="column" fxLayoutAlign="start stretch">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Laufveranstaltung</mat-label>
+      <input matInput placeholder="Marathon" name="runningEventInput" [(ngModel)]="runningEventInput">
+    </mat-form-field>
+    <button mat-raised-button (click)="onAddEventClick()"> Add </button>
+  </form>
 
-  
-
-  <script>
-  function authorizeCookie(codeRaw) {
-    /*URL nach Authorisierung: http://kaese.adrianbrand.ch/?state=&code=e34edab04274a5ab0714c6ed07e75b178e3ffa47&scope= */
-    var codePart = codeRaw.split('&')[1];
-    var code = codePart.split('=')[1];
-    document.cookie = "code=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var tokenEntry = this.responseText.split(',')[1];
-        var tokenNumber = tokenEntry.split(':')[1];
-        var token = tokenNumber.slice(1, -1);
-        document.cookie = "code=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = token;
-      }
-    };
-    var request = "https://www.strava.com/oauth/token?client_id=34855&client_secret=845df2c2d56d781e455a65f2102636f30e4322f5&code=" + code + "&grant_type=authorization_code";
-    xhttp.open("POST", request, true);
-    xhttp.send();
-  }
-
-  function getData(tokenRaw) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("response").innerHTML = this.responseText;
-      }
-    };
-
-    var bearer = "Bearer " + document.cookie;
-    xhttp.open("GET", "https://www.strava.com/api/v3/activities", true);
-    xhttp.setRequestHeader("Authorization", bearer);
-    xhttp.send();
-  }
-  </script>
-
-<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="es2015-polyfills.js" nomodule></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body> -->
+  <mat-list>
+    <h3><strong>Laufveranstaltungen</strong></h3>
+    <mat-list-item *ngFor="let runningEvent of runningEvents;">
+      <h4 mat-line>{{runningEvent.name}}</h4>
+      <mat-icon (click)="onRemoveEventClick(runningEvent)" style="cursor: hand">clear</mat-icon>
+    </mat-list-item>
+  </mat-list>
+</div>

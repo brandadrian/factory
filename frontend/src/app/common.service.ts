@@ -13,10 +13,6 @@ export class CommonService {
 
   constructor(private http: HttpClient) { }
 
-  getRunningEvents() {
-    return this.http.get('http://brandadrian.internet-box.ch:9100/running-event');
-  }
-
   getMessage() {
     return this.http.get('http://brandadrian.internet-box.ch:9001/sudoku');
     //return "hello from common...";
