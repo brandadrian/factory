@@ -21,6 +21,9 @@ docker push brandadr/test1:latest
 /***Lädt Tag auf lokale Umgebung. Immer mit Tag arbeiten da viel schneller***/
 docker pull brandadr/test1:latest
 
+/***Docker command line***/
+docker exec -it <mycontainer> bash
+
 /***Speicher Tag in rar-File***/
 docker save brandadr/test > test.tar
 
